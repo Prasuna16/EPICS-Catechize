@@ -18,4 +18,8 @@
     <string name="signuptext">Don\'t have an account yet? Signup</string>
     <string name="login">Login</string>
     <string name="category_hint">Category of pdf you wish to upload</string>
+    <string name="create_group"><u>Create group</u></string>
+    <string name="my_groups"><u>My groups</u></string>
+    <string name="join_group"><u>Join group</u></string>
+    <string name="groups_in"><u>Groups I am in</u></string>
 </resources>
