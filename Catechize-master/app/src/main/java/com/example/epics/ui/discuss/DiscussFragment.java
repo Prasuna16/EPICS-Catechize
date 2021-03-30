@@ -215,6 +215,7 @@ public class DiscussFragment extends Fragment {
                             if (putData.startPut()) {
                                 if (putData.onComplete()) {
                                     String r =  putData.getResult();
+//                                    Toast.makeText(getContext(), r, Toast.LENGTH_LONG).show();
                                     if (r.equals("Success")) {
                                         Toast.makeText(getContext(), "Answer added!", Toast.LENGTH_SHORT).show();
                                         answer_editText.setText("");

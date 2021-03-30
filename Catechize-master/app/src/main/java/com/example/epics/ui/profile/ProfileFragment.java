@@ -38,11 +38,11 @@ class RandomString {
 
 public class ProfileFragment extends Fragment {
 
-    TextView fb, name, points, badge, createGrp, code, myGroups, joinGroup, groupsIn;
+    TextView fb, name, points, badge, createGrp, code, myGroups, joinGroup, groupsIn, wishlist;
     Button logout, btnCreateGrp, joinGrpBtn, submit_fb;
     EditText groupName, joinGrpCode, fb_edittext;
     String randCode;
-    LinearLayout displayGroups, groupsInLayout;
+    LinearLayout displayGroups, groupsInLayout, wishlist_layout;
     String[] items;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -67,6 +67,8 @@ public class ProfileFragment extends Fragment {
         joinGrpCode = myInflatedView.findViewById(R.id.join_grp_code);
         groupsIn = myInflatedView.findViewById(R.id.groups_in);
         groupsInLayout = myInflatedView.findViewById(R.id.display_groups_in);
+        wishlist_layout = myInflatedView.findViewById(R.id.wishlisted);
+        wishlist = myInflatedView.findViewById(R.id.wishlisted_view);
 
         displayGroups.setVisibility(View.GONE);
         groupsInLayout.setVisibility(View.GONE);
@@ -116,6 +118,43 @@ public class ProfileFragment extends Fragment {
                 }
             }
         });
+        
+        wishlist_layout.setVisibility(View.GONE);
+
+        wishlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (wishlist_layout.getVisibility() == View.GONE) {
+                    wishlist_layout.removeAllViews();
+                    wishlist_layout.setVisibility(View.VISIBLE);
+                    String[] data = {"search", "user"};
+                    String[] values = {"", com.example.epics.PreferenceUtils.getUsername(getContext())};
+                    PutData putData = new PutData("http://192.168.43.67/EPICS/materials/get_files.php", "POST", data, values);
+                    if (putData.startPut()) {
+                        if (putData.onComplete()) {
+                            String r = putData.getResult();
+                            String[] dataa = r.split("BREAKKKK");
+                            String[] wishlisted = dataa[1].split("NEXTTTT");
+//                            Toast.makeText(getContext(), String.valueOf(wishlisted.length), Toast.LENGTH_LONG).show();
+                            for (String s : wishlisted) {
+                                TextView t = new TextView(getContext());
+                                t.setTypeface(ResourcesCompat.getFont(getContext(), R.font.helvetica));
+                                t.setTextSize(18);
+                                t.setText(s);
+                                LinearLayout.LayoutParams pp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
+                                pp.setMargins(50, 0, 0, 0);
+                                t.setLayoutParams(pp);
+                                wishlist_layout.addView(t);
+                            }
+                        }
+                    }
+                }
+                else {
+                    wishlist_layout.setVisibility(View.GONE);
+                }
+            }
+        });
+
         randCode = RandomString.getAlphaNumericString(10);
         createGrp.setOnClickListener(new View.OnClickListener() {
             @Override

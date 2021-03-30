@@ -64,6 +64,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/name" />
 
+
             <TextView
                 android:id="@+id/badge"
                 android:layout_width="match_parent"
@@ -79,6 +80,27 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/points" />
+
+
+            <TextView
+                android:id="@+id/wishlisted_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:text="@string/wish_list_materials" />
+
+            <LinearLayout
+                android:id="@+id/wishlisted"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/create_grp"
@@ -304,7 +326,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="5dp"
                 android:hint="Please provide your valuable feedback here!"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -327,6 +349,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/submit_fb"
                 android:visibility="gone"
+                android:layout_marginBottom="120sp"
                 />
 
 
